@@ -83,7 +83,7 @@ class ContractFilterController extends Controller
     {
         $grid = new Grid(new Contract);
         $grid->disableActions();
-        $grid->model()->where(DB::raw('DATE_ADD(finish_date, INTERVAL 9 MONTH)'), '>', Carbon::now());
+        $grid->model()->where(DB::raw('DATE_ADD(finish_date, INTERVAL 9 MONTH)'), '>', Carbon::now())->orderBy('finish_date', 'asc');
         $grid->id('Id');
         $grid->contract_code('Contract code');
         $grid->name_customer('Name customer');
@@ -98,7 +98,7 @@ class ContractFilterController extends Controller
             $html .= "<div class='alert-danger text-center'>".(($countdown_2>=0)?$countdown_2." ngày nữa":"Đã Hết Hạn")."</div>";
             $html .= "<div class='alert-info text-center'>".(($countdown_3>=0)?$countdown_3." ngày nữa":"Đã Hết Hạn")."</div>";
             return $html;
-        })->sortable();
+        });
 
         return $grid;
     }
