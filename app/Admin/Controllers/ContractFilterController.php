@@ -91,7 +91,7 @@ class ContractFilterController extends Controller
         $grid->phone('Phone');
         $grid->address('Address');
         $grid->finish_date('Trạng Thái Bảo Trì')->display(function ($date) {
-            $countdown_1 = Carbon::now()->diffInDays(Carbon::parse($date)->addMonth(3), false);
+            $countdown_1 = Carbon::now()->diffInDays(Carbon::parse($date)->addMonth(3)->subDays(5), false);
             $countdown_2 = Carbon::now()->diffInDays(Carbon::parse($date)->addMonth(6), false);
             $countdown_3 = Carbon::now()->diffInDays(Carbon::parse($date)->addMonth(9), false);
             $html = "<div class='alert-success text-center'>".(($countdown_1>=0)?$countdown_1." ngày nữa":"Đã Hết Hạn")."</div>";
